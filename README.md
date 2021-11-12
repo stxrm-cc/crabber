@@ -1,4 +1,4 @@
-# crabber
+# crab script by stxrm/sauce
 
 ## EN
 Run install.bat before doing anything on the script to download the two necessary modules to work on the script.
