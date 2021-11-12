@@ -42,7 +42,7 @@ while go:
     if t == 1:
         pm.write_uchar(address1, 1)
         print("Success! The slap cooldown remover has been activated! To disable all hacks, simply type 'disable' below (case insensitive)")
-        t1 = input()
+        t1 = input().upper()
         if t1 == "DISABLE":
             go = False
             pm.close_process()
