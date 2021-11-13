@@ -2,6 +2,7 @@
 
 ## EN
 Run install.bat before doing anything on the script to download the two necessary modules to work on the script.
+
 **UPDATED** YOU NO LONGER HAVE TO USE INSTALL.BAT! JUST RUN THE EXECUTABLE (crabgame_final.exe)!
 
 ## FR
