@@ -6,6 +6,7 @@ import pymem
 import re
 import os
 import time
+import pyautogui
 
 # Colors
 class bcolors:
@@ -42,6 +43,7 @@ client = pymem.process.module_from_name(pm.process_handle, 'GameAssembly.dll')
 slap = False
 jump = False
 kb = False
+sprint = False
 
 # Patches anti cheat
 print("Before we start, do you want to disable the Cheat Engine bypass? (recommended)\n")
@@ -72,15 +74,15 @@ print("Choose one of the cheats available:\n")
 print("1. Slap cooldown remover\n")
 print("2. Air jump/Double jump\n")
 print("3. Anti Knockback\n")
+print("4. Constant sprint (not recommended, in development, very buggy)\n")
 print(bcolors.WARNING + "/!\ Important: to choose a cheat simply input the number of the cheat below", "\n")
 print("For example: to choose the slap cooldown remove hack, simply type '1' below! Enjoy :)\n")
 print(bcolors.BOLD + "To close this window, type 'disable' when prompted to choose a game \n(important: you still have to restart the game to remove the hacks!)")
 print(bcolors.NORMAL + " ")
 
-# Hacks
 go = True
 while go:
-    t = input(bcolors.OKBLUE + "Choose a cheat to activate (ex: 1): ")
+    t = input("Choose a cheat to activate (ex: 1): ")
     
     if int(t) == 1:
         if not slap:
@@ -89,10 +91,10 @@ while go:
             pm.write_uchar(address, 1)
 
             slap = True
-            print(bcolors.OKBLUE + "Success! The slap cooldown remover has been activated! To disable all hacks, simply type 'disable' below (case insensitive)\n")
+            print("Success! The slap cooldown remover has been activated! To disable all hacks, simply type 'disable' below (case insensitive)\n")
 
         else:
-            print(bcolors.OKBLUE + "The slap cooldown remover is already enabled! To disable all hacks, simply type 'disable' below (case insensitive)\n")
+            print("The slap cooldown remover is already enabled! To disable all hacks, simply type 'disable' below (case insensitive)\n")
                 
     elif int(t) == 2:
         if not jump:
@@ -101,9 +103,9 @@ while go:
             pm.write_bytes(address, b"\x90\x90\x90\x90\x90\x90\x90\x90\x90", 9)
 
             jump = True
-            print(bcolors.OKBLUE + "Success! The air jump hack has been activated! To disable all hacks, simply type 'disable' below (case insensitive)\n")
+            print("Success! The air jump hack has been activated! To disable all hacks, simply type 'disable' below (case insensitive)\n")
         else:
-            print(bcolors.OKBLUE + "The double jump hack is already enabled! To disable all hacks, simply type 'disable' below (case insensitive)\n")
+            print("The double jump hack is already enabled! To disable all hacks, simply type 'disable' below (case insensitive)\n")
 
     elif int(t) == 3:
         if not kb:
@@ -112,16 +114,22 @@ while go:
             pm.write_bytes(address, b"\xC3\x90\x90\x90\x90", 5)
 
             kb = True
-            print(bcolors.OKBLUE + "Success! The anti knockback hack has been activated! To disable all hacks, simply type 'disable' below (case insensitive)\n")
+            print("Success! The anti knockback hack has been activated! To disable all hacks, simply type 'disable' below (case insensitive)\n")
         else:
-            print(bcolors.OKBLUE + "Anti Knockback is already enabled! To disable all hacks, simply type 'disable' below (case insensitive)\n")
+            print("Anti Knockback is already enabled! To disable all hacks, simply type 'disable' below (case insensitive)\n")
 
-    elif int(t) > 3:
-        print(bcolors.OKBLUE + "Please enter a valid value ranging from 1 to 3!\n")    
+    elif int(t) == 4:
+        if not sprint:
+            print("Constant sprint has succesfully been activated! To disable all hacks, simply type 'disable' below (case insensitive)\n")
+            while True:
+                pyautogui.keyDown("shift")
+        else:
+            print("Constant sprint is already enabled! To disable all hacks, simply type 'disable' below (case insensitive)\n")
+            
+    elif int(t) > 4:
+        print("Please enter a valid value ranging from 1 to 4!")    
         
     elif t.upper() == "DISABLE":
-        print(bcolors.HEADER + "Shutting down...")
-        time.sleep(2)
         go = False
         pm.close_process()
         exit()
